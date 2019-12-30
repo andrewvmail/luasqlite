@@ -1,0 +1,21 @@
+--- lsqlite3.c	2019-12-29 22:24:38.000000000 -0800
++++ lsqlite3.c.good	2019-12-29 22:26:10.000000000 -0800
+@@ -1229,11 +1229,15 @@
+     char *errmsg = NULL;
+ 
+     if (extname == NULL) {
+-        result = sqlite3_enable_load_extension(db->db,0); /* disable extension loading */
++        //result = sqlite3_enable_load_extension(db->db,0); /* disable extension loading */
++        lua_pushboolean(L,1);
++        return 1;
+     }
+     else {
+-        sqlite3_enable_load_extension(db->db,1); /* enable extension loading */
+-        result = sqlite3_load_extension(db->db,extname,entrypoint,&errmsg);
++        //sqlite3_enable_load_extension(db->db,1); /* enable extension loading */
++        //result = sqlite3_load_extension(db->db,extname,entrypoint,&errmsg);
++        lua_pushboolean(L,1);
++        return 1;
+     }
+ 
+     if (result == SQLITE_OK) {
